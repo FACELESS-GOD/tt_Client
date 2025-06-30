@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package TestServer;
+
+option go_package = "github.com/FACELESS-GOD/tt.git";
+
+service TestGRPCService {
+    rpc GetData(DataReceipt) returns (stream Data) {}
+    rpc AddData(SendData) returns (DataReceipt) {}
+    rpc GetDataStatus(DataReceipt) returns (DataStatus) {}
+} 
+
+message Data {
+    repeated Item items = 1 ;
+}
+
+message SendData {
+    repeated Item items = 1 ;
+}
+
+message DataReceipt {
+    string ID = 1 ;
+}
+
+message DataStatus {
+    string DataID = 1 ;
+    string Status = 2;
+}
+
+message Item {
+    string Id = 1 ;
+    string name = 2;
+}
